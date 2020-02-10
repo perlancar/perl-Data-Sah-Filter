@@ -1,0 +1,382 @@
+0.046   2020-01-03  Released-By: PERLANCAR; Urgency: medium
+
+	- [bugfix] Upgrade dependency Time::Local from TestRecommends to
+	  RuntimeRequires [RT#131332].
+
+
+0.045   2020-01-03  Released-By: PERLANCAR; Urgency: medium
+
+	- Update coerce rule names in doc and precludes.
+
+
+0.044   2020-01-02  Released-By: PERLANCAR; Urgency: medium
+
+	- Require Time::Local 1.27 for time{gm,local}_modern [RT#131332].
+
+
+0.043   2020-01-02  Released-By: PERLANCAR; Urgency: low
+
+	- No functional changes.
+
+	- [doc] Update coerce rule names in examples.
+
+
+0.042   2020-01-02  Released-By: PERLANCAR; Urgency: medium
+
+	- [bugfix] To_{date,datenotime,datetime}::From_str::iso8601: Also
+	  support dates before epoch 0 (year 1969) when coerce_to=float(epoch);
+	  switch from Time::Local::time{gm,local} to time{gm,local}_modern.
+
+
+0.041   2020-01-01  Released-By: PERLANCAR; Urgency: medium
+
+	- [bugfix] To_{date,datenotime,datetime}::From_str::iso8601:
+	  Support dates before epoch (Jan 1, 1970) when
+	  coerce_to=DateTime/Time::Moment (previously the coercion rule
+	  always convert to epoch first).
+
+
+0.040   2019-12-04  Released-By: PERLANCAR; Urgency: medium
+
+	- Add missing dependency: Time::Duration::Parse::AsHash
+	  [RT#131112].
+
+
+0.039   2019-11-28  Released-By: PERLANCAR; Urgency: medium
+
+	- Observe PERL_DATA_SAH_COERCE_SUPPORT_OLD_PREFIX.
+
+
+0.038   2019-11-28  Released-By: PERLANCAR; Urgency: medium
+
+	- [bugfix] Didn't set the correct coerce rule module name for each
+	  rule.
+
+
+0.037   2019-11-28  Released-By: PERLANCAR; Urgency: medium
+
+        [INCOMPATIBLE CHANGE]
+
+	- Rename coerce rule modules again, revert to using lower_case
+	  notation for the description part, because CamelCase is really,
+	  REALLY ugly when we have many words.
+
+
+0.036   2019-11-28  Released-By: PERLANCAR; Urgency: medium
+
+	- Restore backward compatibility by supporting old naming scheme to
+	  avoid breaking too many scripts/schemas.
+
+
+0.035   2019-11-27  Released-By: PERLANCAR; Urgency: medium
+
+        - Merge releases 0.034.1 and 0.034.
+
+        - [build] Rebuild with dzil plugin [Data::Sah::Coerce] to put meta's
+          summary into Abstract.
+
+
+0.034.1 2019-11-27  Released-By: PERLANCAR; Urgency: medium
+
+        - Update 2019-11-27T17:22:00: rename from 0.034 to 0.034.1, cancel
+          release (duplicate version).
+
+        [INCOMPATIBLE CHANGE]
+
+	- New naming scheme for coerce rule modules:
+	  Data::Sah::Coerce::To_<TargetType>::From_<SourceType>::<Description>;
+	  This makes the name significantly clearer. Metadata version is not
+	  bumped.
+
+          This means the old name is not searched anymore. Any Sah schema that
+          contains coercion rules must be updated so it refers to the new
+          module. Any Sah coercion module with the new name must be renamed to
+          the new one.
+
+          UPDATE 2019-11-28: old name is now still searched and accepted since
+          0.036.
+
+        [ENHANCEMENTS]
+
+        - Add summary to meta. This makes it easier for script like
+          'list-sah-coerce-rule-modules` to display summary for each rule.
+
+
+0.034   2019-10-24  Released-By: PERLANCAR; Urgency: medium
+
+	- Add $DIST to all modules.
+
+
+0.033   2019-01-26  Released-By: PERLANCAR
+
+	- [Bugfix] date coercion rule float_epoch_always doesn't need to
+	  preclude str_iso8601 because they won't be confused: str_iso8601
+	  matches YYYY-MM-DD and not YYYYMMDD.
+
+
+0.032   2019-01-21  Released-By: PERLANCAR
+
+        - Maintain a static list of default coercion modules instead of finding
+          & loading all Data::Sah::Coerce::* modules on the system. The
+          motivation for this change is performance, simplicity, as well as
+          reduction of test warnings from CPAN Testers. Typically, a CPAN Tester
+          would have tested an old version of a coercion rule distribution, say
+          Data-Sah-Coerce-perl-date-str_alami and then later tests another
+          module. Data::Sah::Coerce would then warn when it cannot load the old
+          coercion rule module because the metadata version has been bumped.
+          With this change, the list of default coercion rules is maintained in
+          %Default_Rules in Data::Sah::Coerce instead of loading all coercion
+          rule modules and trying to read its 'enable_by_default' meta property.
+
+        - [Removed] Remove the ability to specify regexes in coerce_rules
+          because it is never used in practice, so far. The use of regexes also
+          requires us to find list of modules anyway.
+
+        - [Incompatible change] Bump metadata version to 4, just to remove
+          'enable_by_default' property. Data::Sah::Coerce still accepts old
+          metadata version (3) but ignores the property.
+
+
+0.031   2018-12-16  Released-By: PERLANCAR
+
+	- timeofday: Tweak str_hms regex: allow hh:mm in addition to hh:mm:ss
+	  (e.g.: 11:00 instead of 11:00:00), allow h:m(:s)? in addition to
+	  hh:mm(:ss)? (e.g.: 1:15 instead of 01:15).
+
+
+0.030   2018-12-16  Released-By: PERLANCAR
+
+	- [Bugfix] Default coerce_to for timeofday in perl should be
+	  str_hms, not float.
+
+
+0.029   2018-12-16  Released-By: PERLANCAR
+
+	- Add standard coercion rules for timeofday.
+
+
+0.028   2018-12-15  Released-By: PERLANCAR
+
+	- Add standard coercion rules for datenotime and datetime types.
+
+
+0.027   2018-10-30  Released-By: PERLANCAR
+
+	- Add coercion rule: perl::date::float_epoch_always.
+
+
+0.026   2018-06-03  Released-By: PERLANCAR
+
+	- [Bugfix] Multiple exclusion (e.g. ["!R1","!R2"]) did not work as
+	  advertised.
+
+	- [Bugfix] Didn't sort rules by name.
+
+
+0.025   2018-06-02  Released-By: PERLANCAR
+
+	[INCOMPATIBLE CHANGE]
+
+        - Bump coerce module's metadata version from 2 to 3. This is to allow
+	  the coercer code to return error message (when coercion fails) in
+	  addition to coerced data. The metadata property 'might_die' is now
+	  replaced by 'might_fail'. The coercer code is not expected to die,
+	  unless there's an extraordinary situation in which case the whole
+	  coercer code or schema validator code which uses the coercer code will
+	  die anyway. Instead, when 'might_fail' is set to true, the coercer
+	  code is expected to return an array containing (error_message,
+	  coerced_data) instead of just coerced_data. When coercion succeeds,
+	  error_message should be set to undef and when coercion fails,
+	  error_message is set to a string detailing why coercion fails, and
+	  coerced_data is set to undef.
+
+
+0.024   2018-03-27  Released-By: PERLANCAR
+
+	- Allow space in addition to 'T' as date and time separator, so we
+	  can accept MySQL datetime format.
+
+
+0.023   2017-07-10  Released-By: PERLANCAR
+
+	- No functional changes.
+
+	- [doc] Forgot to replace mention of Log::Any with Log::ger in the
+	  doc.
+
+
+0.022   2017-07-10  Released-By: PERLANCAR
+
+	- No functional changes.
+
+	- Replace Log::Any with Log::ger.
+
+
+0.021   2017-03-14  Released-By: PERLANCAR
+
+	- Add coerce rules: {int,float}::str_percent.
+
+
+0.020   2016-09-29  Released-By: PERLANCAR
+
+        - [build] Rebuild to remove dependencies on
+          Data::Sah::Compiler::perl::TH::* (which was accidentally added by a
+          dzil plugin). [RT#118115]
+
+
+0.019   2016-09-26  Released-By: PERLANCAR
+
+	- Revert from using JSON::MaybeXS to JSON because JSON::MaybeXS is
+          currently not depakable (hard dependency to XS module
+          Cpanel::JSON::XS).
+
+
+0.018   2016-06-29  Released-By: PERLANCAR
+
+	- Include nanoseconds when coercing from DateTime::Duration object
+	  to float(secs).
+
+
+0.017   2016-06-13  Released-By: PERLANCAR
+
+	- Load required modules in the generated code, not in
+	  Data::Sah::Coerce.
+
+
+0.016   2016-06-12  Released-By: PERLANCAR
+
+	- Tweak js-bool test to be more flexible of JSON decode result.
+
+	- Adjust to IPC::System::Options 0.27+ (backtick() renamed to
+	  readpipe()).
+
+	- [doc] Wording/typo/fmt.
+
+
+0.015   2016-06-04  Released-By: PERLANCAR
+
+	- Use IPC::System::Options 0.25's backtick() to properly
+	  shell-quote on win32.
+
+	- [doc] Mention App::SahUtils & coerce-with-sah.
+
+
+0.014   2016-05-27  Released-By: PERLANCAR
+
+	- Impart default coerce_to knowledge to each rule, for convenience.
+
+
+0.013   2016-05-25  Released-By: PERLANCAR
+
+	- No functional changes.
+
+	- [test] Forgot to add test_needs(Time::Duration::Parse::AsHash) to
+	  some tests [CT].
+
+
+0.012   2016-05-24  Released-By: PERLANCAR
+
+	- [Bugfix] Precludes should be checked to all rules, not just rules
+	  after the precluding rule.
+
+
+0.011   2016-05-23  Released-By: PERLANCAR
+
+        - [Incompatible change] Replace 'dont_coerce_from' and 'coerce_from'
+          options to 'coerce_rules' which are more flexible.
+
+        - Interpret rule metadata property 'precludes'.
+
+        - [test] Forgot to add test_needs() to a subtest [CT].
+
+
+0.010   2016-05-22  Released-By: PERLANCAR
+
+        - Introduce rule metadata: v & precludes.
+
+        - [Incompatible change] Bump metadata version from 1 -> 2 to exclude old
+          rule modules (i.e. date::int_epoch from 0.005, which generate
+          CPANTesters failures).
+
+        - [Internal] Refactor routine: get_coerce_rules() to avoid code
+          duplication between Data::Sah::Coerce and Data::Sah::CoerceJS (and
+          Data::Sah::Compiler::Prog).
+
+
+0.009   2016-05-22  Released-By: PERLANCAR
+
+	- [Incompatible change] Replace return_type=bool+val with str+val.
+
+
+0.008   2016-05-21  Released-By: PERLANCAR
+
+	- No functional changes.
+
+	- [test] Skip js tests when node.js is not available [CT].
+
+
+0.007   2016-05-20  Released-By: PERLANCAR
+
+        - Add option: return_type. The default is 'val' which is the same as
+          before, but another return type 'bool+val' makes the coercer return a
+          2-element array instead: the first element is a bool value indicating
+          whether value has been coerced, and the second is the  Released-By: possibly
+          coerced value. This is useful e.g. for testing/debugging.
+
+
+0.006   2016-05-19  Released-By: PERLANCAR
+
+        [INCOMPATIBLE CHANGES]
+
+        - Rename js rules: date::int_epoch -> date::float_epoch. Rename perl
+          rules: date::int_epoch -> date::float_epoch. This means when
+          upgrading, you must first uninstall the old version to remove the old
+          module names. Sorry for this.
+
+        [ENHANCEMENTS]
+
+        - Introduce ordering ('prio' key in rule metadata). prio is a number
+          between 0-100 and the lower the number, the higher the priority is.
+          Rules will be sorted using their priority.
+
+        - Add coercion rules for type 'bool'.
+
+        [TESTS]
+
+        - Complete the rest of the test suite (js compiler, duration and bool
+          types).
+
+
+0.005   2016-05-18  Released-By: PERLANCAR
+
+	- No functional changes.
+
+	- Add test suite (so far only for compiler=perl, type=date).
+
+
+0.004   2016-05-18  Released-By: PERLANCAR
+
+	- js: Add coercion rule for duration from float/float-string.
+
+
+0.003   2016-05-17  Released-By: PERLANCAR
+
+        - Add coercion rules for type 'duration'.
+
+
+0.002   2016-05-17  Released-By: PERLANCAR
+
+        - Add js rules for type 'date'.
+
+        - Introduce rule metadata 'might_die'.
+
+        - Add module: Data::Sah::CoerceJS.
+
+        - perl: Tweak error messages to make it more helpfule.
+
+        - Documentationf fixes and addition.
+
+
+0.001   2016-05-16  Released-By: PERLANCAR
+
+        - First release, incomplete (no JS implementation & test suite yet).
