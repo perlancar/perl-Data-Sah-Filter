@@ -1,3 +1,8 @@
+0.004   2020-02-11  Released-By: PERLANCAR; Urgency: medium
+
+	- Add filter: Str::replace_map.
+
+
 0.003   2020-02-11  Released-By: PERLANCAR; Urgency: medium
 
 	- Add might_fail support (like in Data::Sah::Coerce) in the filter
