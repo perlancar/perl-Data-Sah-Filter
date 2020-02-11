@@ -68,7 +68,7 @@ sub gen_filter {
                 }
             } else {
                 if ($rt eq 'val') {
-                    $code_filter .= "    \$tmp = $rule->{expr_filter}; ";
+                    $code_filter .= "    \$data = $rule->{expr_filter}; ";
                 } else {
                     $code_filter .= "    \$data = [undef, $rule->{expr_filter}]; ";
                 }
