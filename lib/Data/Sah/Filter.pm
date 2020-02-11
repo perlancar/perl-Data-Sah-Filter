@@ -29,14 +29,14 @@ This is mostly for testing. Normally the filter rules will be used from
 
 _
     args => {
-        filter_names => {
-            schema => ['array*', of=>'str*'],
-        },
+        %Data::Sah::FilterCommon::gen_filter_args,
     },
     result_naked => 1,
 };
 sub gen_filter {
     my %args = @_;
+
+    my $rt = $args{return_type} // 'val';
 
     my $rules = Data::Sah::FilterCommon::get_filter_rules(
         %args,
@@ -56,19 +56,45 @@ sub gen_filter {
             }
         }
 
+        my $code_filter = "";
+        my $has_defined_tmp;
+        for my $rule (@$rules) {
+            if ($rule->{meta}{might_fail}) {
+                if ($rt eq 'val') {
+                    $code_filter .= "    my \$tmp; " unless $has_defined_tmp++;
+                    $code_filter .= "    \$tmp = $rule->{expr_filter}; return undef if \$tmp->[0]; ";
+                } else {
+                    $code_filter .= "    \$data = $rule->{expr_filter}; return \$data if \$data->[0]; ";
+                }
+            } else {
+                if ($rt eq 'val') {
+                    $code_filter .= "    \$tmp = $rule->{expr_filter}; ";
+                } else {
+                    $code_filter .= "    \$data = [undef, $rule->{expr_filter}]; ";
+                }
+            }
+        }
+
         $code = join(
             "",
             $code_require,
             "sub {\n",
             "    my \$data = shift;\n",
             "    unless (defined \$data) {\n",
-            "        return undef;\n",
+            "        ", ($rt eq 'val' ? "return undef;" :
+                             "return [undef, undef];" # str_errmsg+val
+                         ), "\n",
             "    }\n",
-            (map { "    \$data = $_->{expr_filter};\n" } @$rules),
+            $code_filter, "\n",
+            "    \$data;\n",
             "}",
         );
     } else {
-        $code = 'sub { $_[0] }';
+        if ($rt eq 'val') {
+            $code = 'sub { $_[0] }';
+        } else {
+            $code = 'sub { [undef, $_[0]] }';
+        }
     }
 
     if ($Log_Filter_Code) {
@@ -142,6 +168,17 @@ The C<filter> subroutine must return a hashref with the following keys (C<*>
 indicates required keys):
 
 =over
+
+=item * might_fail => bool
+
+Whether coercion might fail, e.g. because of invalid input. If set to 1,
+C<expr_filter> key that the C<filter()> routine returns must be an expression
+that returns an array (envelope) of C<< (error_msg, data) >> instead of just
+filtered data. Error message should be a string that is set when filtering fails
+and explains why. Otherwise, if filtering succeeds, the string should be set to
+undefined value.
+
+This is used for filtering rules that act as a data checker.
 
 =item * expr_filter => str
 
