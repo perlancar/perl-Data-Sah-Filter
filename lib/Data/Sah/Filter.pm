@@ -175,8 +175,8 @@ Whether coercion might fail, e.g. because of invalid input. If set to 1,
 C<expr_filter> key that the C<filter()> routine returns must be an expression
 that returns an array (envelope) of C<< (error_msg, data) >> instead of just
 filtered data. Error message should be a string that is set when filtering fails
-and explains why. Otherwise, if filtering succeeds, the string should be set to
-undefined value.
+and explains why. Otherwise, if filtering succeeds, the error message string
+should be set to undefined value.
 
 This is used for filtering rules that act as a data checker.
 

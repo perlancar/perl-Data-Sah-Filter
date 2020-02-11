@@ -42,19 +42,19 @@ sub filter {
     my @check_exprs;
     if (defined $gen_args->{min_len}) {
         my $val = $gen_args->{min_len} + 0;
-        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq( (length(\$tmp) < $val) { ["Length of data must be at least $val", undef] } );
+        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq( (length(\$tmp) < $val) { ["Length of data must be at least $val", \$tmp] } );
     }
     if (defined $gen_args->{max_len}) {
         my $val = $gen_args->{max_len} + 0;
-        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq( (length(\$tmp) > $val) { ["Length of data must be at most $val", undef] } );
+        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq( (length(\$tmp) > $val) { ["Length of data must be at most $val", \$tmp] } );
     }
     if (defined $gen_args->{match}) {
         my $val = ref $gen_args->{match} eq 'Regexp' ? $gen_args->{match} : qr/$gen_args->{match}/;
-        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq| (\$tmp !~ |.dmp($val).qq|) { ["Data must match $val", undef] } |;
+        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq| (\$tmp !~ |.dmp($val).qq|) { ["Data must match $val", \$tmp] } |;
     }
     if (defined $gen_args->{in}) {
         my $val = $gen_args->{in};
-        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq| (!grep { \$_ eq \$tmp } \@{ |.dmp($val).qq| }) { ["Data must be one of ".join(", ", \@{|.dmp($val).qq|}), undef] } |;
+        push @check_exprs, (@check_exprs ? "elsif" : "if") . qq| (!grep { \$_ eq \$tmp } \@{ |.dmp($val).qq| }) { ["Data must be one of ".join(", ", \@{|.dmp($val).qq|}), \$tmp] } |;
     }
     unless (@check_exprs) {
         push @check_exprs, qq(if (0) { } );
