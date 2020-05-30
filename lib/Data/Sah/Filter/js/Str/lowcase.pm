@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::downcase;
+package Data::Sah::Filter::js::Str::lowcase;
 
 # AUTHORITY
 # DATE

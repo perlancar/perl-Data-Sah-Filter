@@ -1,4 +1,4 @@
-package Data::Sah::Filter::perl::Str::downcase;
+package Data::Sah::Filter::perl::Str::lowcase;
 
 # AUTHORITY
 # DATE
