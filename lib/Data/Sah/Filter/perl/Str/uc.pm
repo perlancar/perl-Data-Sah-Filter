@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::upcase;
+package Data::Sah::Filter::perl::Str::uc;
 
 # AUTHORITY
 # DATE
@@ -13,7 +13,6 @@ sub meta {
     +{
         v => 1,
         summary => 'Convert string to uppercase',
-        target_type => 'str',
     };
 }
 
@@ -23,8 +22,10 @@ sub filter {
     my $dt = $args{data_term};
 
     my $res = {};
-
-    $res->{expr_filter} = "$dt.toUpperCase()";
+    $res->{expr_filter} = join(
+        "",
+        "uc($dt)",
+    );
 
     $res;
 }
@@ -36,7 +37,7 @@ sub filter {
 
 =head1 SEE ALSO
 
-Related filters: L<downcase|Data::Sah::Filter::js::Str::downcase>.
+Related filters: L<lc|Data::Sah::Filter::perl::Str::lc>.
 
-Synonym: L<uc|Data::Sah::Filter::js::Str::uc>,
+Synonym: L<upcase|Data::Sah::Filter::js::Str::upcase>,
 L<uppercase|Data::Sah::Filter::js::Str::uppercase>.

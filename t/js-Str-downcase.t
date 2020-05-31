@@ -11,7 +11,7 @@ use Nodejs::Util qw(get_nodejs_path);
 
 plan skip_all => 'node.js is not available' unless get_nodejs_path();
 
-my $filter = Data::Sah::FilterJS::gen_filter(filter_names=>["Str::lowcase"]);
+my $filter = Data::Sah::FilterJS::gen_filter(filter_names=>["Str::downcase"]);
 is_deeply($filter->(undef), undef);
 is_deeply($filter->("Foo"), "foo");
 

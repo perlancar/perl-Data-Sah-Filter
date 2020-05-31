@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::upcase;
+package Data::Sah::Filter::js::Str::uc;
 
 # AUTHORITY
 # DATE
@@ -36,7 +36,7 @@ sub filter {
 
 =head1 SEE ALSO
 
-Related filters: L<downcase|Data::Sah::Filter::js::Str::downcase>.
+Related filters: L<lc|Data::Sah::Filter::js::Str::lc>.
 
-Synonym: L<uc|Data::Sah::Filter::js::Str::uc>,
+Synonym: L<upcase|Data::Sah::Filter::js::Str::upcase>,
 L<uppercase|Data::Sah::Filter::js::Str::uppercase>.

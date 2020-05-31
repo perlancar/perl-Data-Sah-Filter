@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::lowcase;
+package Data::Sah::Filter::js::Str::downcase;
 
 # AUTHORITY
 # DATE
@@ -33,3 +33,10 @@ sub filter {
 # ABSTRACT:
 
 =for Pod::Coverage ^(meta|filter)$
+
+=head1 SEE ALSO
+
+Related filters: L<upcase|Data::Sah::Filter::js::Str::upcase>.
+
+Synonym: L<lc|Data::Sah::Filter::js::Str::lc>,
+L<lowercase|Data::Sah::Filter::js::Str::lowercase>.

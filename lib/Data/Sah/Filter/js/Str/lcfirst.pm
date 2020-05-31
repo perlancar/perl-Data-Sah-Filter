@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::upcase;
+package Data::Sah::Filter::js::Str::lcfirst;
 
 # AUTHORITY
 # DATE
@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Convert string to uppercase',
+        summary => 'Convert first character of string to lowercase',
         target_type => 'str',
     };
 }
@@ -24,7 +24,7 @@ sub filter {
 
     my $res = {};
 
-    $res->{expr_filter} = "$dt.toUpperCase()";
+    $res->{expr_filter} = "(function (_m) { _m = $dt; return _m.charAt(0).toLowerCase() + _m.substring(1) })()";
 
     $res;
 }
@@ -36,7 +36,4 @@ sub filter {
 
 =head1 SEE ALSO
 
-Related filters: L<downcase|Data::Sah::Filter::js::Str::downcase>.
-
-Synonym: L<uc|Data::Sah::Filter::js::Str::uc>,
-L<uppercase|Data::Sah::Filter::js::Str::uppercase>.
+Related filters: L<ucfirst|Data::Sah::Filter::js::Str::ucfirst>.

@@ -1,4 +1,4 @@
-package Data::Sah::Filter::js::Str::upcase;
+package Data::Sah::Filter::js::Str::lc;
 
 # AUTHORITY
 # DATE
@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Convert string to uppercase',
+        summary => 'Convert string to lowercase',
         target_type => 'str',
     };
 }
@@ -24,7 +24,7 @@ sub filter {
 
     my $res = {};
 
-    $res->{expr_filter} = "$dt.toUpperCase()";
+    $res->{expr_filter} = "$dt.toLowerCase()";
 
     $res;
 }
@@ -36,7 +36,7 @@ sub filter {
 
 =head1 SEE ALSO
 
-Related filters: L<downcase|Data::Sah::Filter::js::Str::downcase>.
+Related filters: L<uc|Data::Sah::Filter::js::Str::uc>.
 
-Synonym: L<uc|Data::Sah::Filter::js::Str::uc>,
-L<uppercase|Data::Sah::Filter::js::Str::uppercase>.
+Synonym: L<downcase|Data::Sah::Filter::js::Str::downcase>,
+L<lowercase|Data::Sah::Filter::js::Str::lowercase>.

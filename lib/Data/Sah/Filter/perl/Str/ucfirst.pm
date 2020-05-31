@@ -1,4 +1,4 @@
-package Data::Sah::Filter::perl::Str::lowcase;
+package Data::Sah::Filter::perl::Str::ucfirst;
 
 # AUTHORITY
 # DATE
@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Convert string to lowercase',
+        summary => 'Convert first character of string to uppercase',
     };
 }
 
@@ -24,7 +24,7 @@ sub filter {
     my $res = {};
     $res->{expr_filter} = join(
         "",
-        "lc($dt)",
+        "ucfirst($dt)",
     );
 
     $res;
@@ -34,3 +34,7 @@ sub filter {
 # ABSTRACT:
 
 =for Pod::Coverage ^(meta|filter)$
+
+=head1 SEE ALSO
+
+Related filters: L<lcfirst|Data::Sah::Filter::perl::Str::lcfirst>.
