@@ -1,4 +1,4 @@
-package Data::Sah::Filter::perl::Float::check_int;
+package Data::Sah::Filter::perl::Float::check_has_fraction;
 
 # AUTHORITY
 # DATE
@@ -14,7 +14,12 @@ use Data::Dmp;
 sub meta {
     +{
         v => 1,
-        summary => 'Check that a floating point number is integer',
+        summary => 'Check that a floating point number has non-zero fraction',
+        description => <<'_',
+
+This is the opposite of the `Float::check_int` filter.
+
+_
         might_fail => 1,
         args => {
         },
@@ -28,7 +33,7 @@ sub filter {
     my $res = {};
     $res->{expr_filter} = join(
         "",
-        "do { my \$tmp=$dt; \$tmp==int(\$tmp) ? [undef, \$tmp] : ['Number must be an integer', \$tmp] }",
+        "do { my \$tmp=$dt; \$tmp!=int(\$tmp) ? [undef, \$tmp] : ['Number must have fraction', \$tmp] }",
     );
 
     $res;
@@ -41,9 +46,7 @@ sub filter {
 
 =head1 DESCRIPTION
 
-This filter checks that number is an integer, i.e. 2.5 fails but 2 succeeds.
-
 
 =head1 SEE ALSO
 
-Related filters: L<Float::check_has_fraction|Data::Sah::Filter::perl::Float::check_has_fraction>.
+Related filters: L<Float::check_int|Data::Sah::Filter::perl::Float::check_int>.
