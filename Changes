@@ -1,3 +1,9 @@
+0.008   2020-06-04  Released-By: PERLANCAR; Urgency: medium
+
+	- Add filters: Float::check_int, Float::check_has_fraction (currently
+          perl only).
+
+
 0.007   2020-06-04  Released-By: PERLANCAR; Urgency: medium
 
 	- Add filters: Float::{ceil,floor,round} (currently perl only).
