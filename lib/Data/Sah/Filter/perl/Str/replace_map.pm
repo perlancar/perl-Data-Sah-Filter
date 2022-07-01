@@ -53,7 +53,7 @@ sub filter {
 This filter rule can be used to replace some (e.g. old) values to other (e.g.
 new) values. For example, with this rule:
 
- [replace_map => {burma => "myanmar", siam => "thailand"}]
+ [replace_map => {map => {burma => "myanmar", siam => "thailand"}}]
 
 then "indonesia" or "myanmar" will be unchanged, but "burma" will be changed to
 "myanmar" and "siam" will be changed to "thailand".
