@@ -1,13 +1,13 @@
 package Data::Sah::FilterCommon;
 
+use 5.010001;
+use strict 'subs', 'vars';
+use warnings;
+
 # AUTHORITY
 # DATE
 # DIST
 # VERSION
-
-use 5.010001;
-use strict 'subs', 'vars';
-use warnings;
 
 our %SPEC;
 
