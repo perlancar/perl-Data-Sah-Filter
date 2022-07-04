@@ -1,10 +1,5 @@
 package Data::Sah::Filter;
 
-# AUTHORITY
-# DATE
-# DIST
-# VERSION
-
 use strict 'subs', 'vars';
 use warnings;
 no warnings 'once';
@@ -13,6 +8,12 @@ use Log::ger;
 use Data::Sah::FilterCommon;
 
 use Exporter qw(import);
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
+
 our @EXPORT_OK = qw(gen_filter);
 
 our %SPEC;
@@ -103,7 +104,7 @@ sub gen_filter {
 
     return $code if $args{source};
 
-    my $filter = eval $code;
+    my $filter = eval $code; ## no critic: BuiltinFunctions::ProhibitStringyEval
     die if $@;
     $filter;
 }
