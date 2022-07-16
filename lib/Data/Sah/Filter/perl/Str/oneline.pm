@@ -13,6 +13,11 @@ sub meta {
     +{
         v => 1,
         summary => 'Replace newlines with spaces',
+        examples => [
+            {value=>"a"},
+            {value=>"a\nb", filtered_value=>"a b"},
+            {value=>"a\n\n\nb\n", filtered_value=>"a   b "},
+        ],
     };
 }
 

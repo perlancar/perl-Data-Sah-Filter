@@ -19,6 +19,11 @@ sub meta {
                 default => 72,
             },
         },
+        examples => [
+            {value=>"foo"},
+            {value=>"foo foo foo foo"},
+            {value=>"foo foo foo foo", filter_args=>{columns=>4}, filtered_value=>"foo\nfoo\nfoo"},
+        ],
     };
 }
 

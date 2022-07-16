@@ -19,6 +19,12 @@ sub meta {
                 default => 'shell',
             },
         },
+        examples => [
+            {value=>"foo"},
+            {value=>"foo # comment", filtered_value=>"foo"},
+            {value=>"foo # comment", filter_args=>{style=>"cpp"}},
+            {value=>"foo // comment", filter_args=>{style=>"cpp"}, filtered_value=>"foo"},
+        ],
     };
 }
 
