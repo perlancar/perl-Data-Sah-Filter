@@ -4,8 +4,6 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Data::Dmp;
-
 # AUTHORITY
 # DATE
 # DIST
