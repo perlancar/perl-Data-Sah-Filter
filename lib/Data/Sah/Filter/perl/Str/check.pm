@@ -30,6 +30,17 @@ sub meta {
                 schema => ['array*', of=>'str*'],
             },
         },
+        examples => [
+            {value=>"123", filter_args=>{max_len=>3}, valid=>1},
+            {value=>"12345", filter_args=>{max_len=>3}, valid=>0},
+        ],
+        description => <<'_',
+
+This is more or less a demo filter rule, to show how a filter rule can be used
+to perform some checks. The standard checks performed by this rule, however, are
+better done using standard <pm:Sah> schema clauses like `in`, `min_len`, etc.
+
+_
     };
 }
 
@@ -76,9 +87,3 @@ sub filter {
 # ABSTRACT:
 
 =for Pod::Coverage ^(meta|filter)$
-
-=head1 DESCRIPTION
-
-This is more or less a demo filter rule, to show how a filter rule can be used
-to perform some checks. The standard checks performed by this rule, however,
-are better done using standard schema clauses like C<in>, C<min_len>, etc.

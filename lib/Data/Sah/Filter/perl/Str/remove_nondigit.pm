@@ -13,6 +13,11 @@ sub meta {
     +{
         v => 1,
         summary => 'Remove non-digit characters',
+        examples => [
+            {value=>"5551234567"},
+            {value=>"555-123-4567", filtered_value=>"5551234567"},
+            {value=>"(555) 123-4567", filtered_value=>"5551234567"},
+        ],
     };
 }
 
