@@ -21,7 +21,7 @@ our %common_args = (
 our %gen_filter_args = (
     %common_args,
     return_type => {
-        schema => ['str*', in=>['val', 'errstr+val']],
+        schema => ['str*', in=>['val', 'str_errmsg+val']],
         default => 'val',
     },
 );

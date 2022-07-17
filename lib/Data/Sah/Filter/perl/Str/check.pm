@@ -31,8 +31,15 @@ sub meta {
             },
         },
         examples => [
+            {value=>"12", filter_args=>{min_len=>3}, valid=>0},
+            {value=>"12345", filter_args=>{min_len=>3}, valid=>1},
+
             {value=>"123", filter_args=>{max_len=>3}, valid=>1},
             {value=>"12345", filter_args=>{max_len=>3}, valid=>0},
+
+            {value=>"123", filter_args=>{match=>'[abc]'}, valid=>0},
+            {value=>"a", filter_args=>{match=>'[abc]'}, valid=>1},
+
         ],
         description => <<'_',
 

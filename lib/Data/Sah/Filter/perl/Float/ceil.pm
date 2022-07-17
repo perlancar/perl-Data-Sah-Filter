@@ -18,6 +18,12 @@ sub meta {
                 schema => 'ufloat*',
             },
         },
+        examples => [
+            {value=>1, filtered_value=>1},
+            {value=>-1.1, filtered_value=>-1},
+            {value=>1.1, filtered_value=>2},
+            {value=>1.1, filter_args=>{nearest=>0.5}, filtered_value=>1.5},
+        ],
     };
 }
 

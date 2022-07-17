@@ -14,6 +14,11 @@ sub meta {
         v => 1,
         summary => 'Convert first character of string to lowercase',
         target_type => 'str',
+        examples => [
+            {value=>'foo'},
+            {value=>'Foo', filtered_value=>'foo'},
+            {value=>'FOO', filtered_value=>'fOO'},
+        ],
     };
 }
 

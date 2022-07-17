@@ -21,6 +21,10 @@ sub meta {
                 req => 1,
             },
         },
+        examples => [
+            {value=>"foo", filter_args=>{map=>{foo=>"bar", baz=>"qux"}}, filtered_value=>"bar"},
+            {value=>"bar", filter_args=>{map=>{foo=>"bar", baz=>"qux"}}},
+        ],
     };
 }
 

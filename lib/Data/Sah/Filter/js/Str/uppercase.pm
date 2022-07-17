@@ -14,6 +14,12 @@ sub meta {
         v => 1,
         summary => 'Convert string to uppercase',
         target_type => 'str',
+        examples => [
+            {value=>'foo', filtered_value=>'FOO'},
+            {value=>'Foo', filtered_value=>'FOO'},
+            {value=>'fOO', filtered_value=>'FOO'},
+            {value=>'FOO'},
+        ],
     };
 }
 

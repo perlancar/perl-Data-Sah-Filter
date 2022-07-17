@@ -6,7 +6,6 @@ no warnings 'once';
 use Log::ger;
 
 use Data::Sah::FilterCommon;
-
 use Exporter qw(import);
 
 # AUTHORITY

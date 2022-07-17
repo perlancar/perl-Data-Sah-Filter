@@ -13,6 +13,10 @@ sub meta {
     +{
         v => 1,
         summary => 'Trim whitespaces at the end of string',
+        examples => [
+            {value=>'foo'},
+            {value=>' foo ', filtered_value=>' foo'},
+        ],
     };
 }
 
