@@ -13,6 +13,12 @@ sub meta {
     +{
         v => 1,
         summary => 'Convert first character of string to uppercase',
+        examples => [
+            {value=>'foo', filtered_value=>'Foo'},
+            {value=>'Foo'},
+            {value=>'fOO', filtered_value=>'FOO'},
+            {value=>'FOO'},
+        ],
     };
 }
 

@@ -16,6 +16,11 @@ sub meta {
         might_fail => 1,
         args => {
         },
+        examples => [
+            {value=>1, valid=>1},
+            {value=>-1.1, valid=>0},
+            {value=>1.1, valid=>0},
+        ],
     };
 }
 

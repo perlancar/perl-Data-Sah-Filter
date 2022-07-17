@@ -13,6 +13,10 @@ sub meta {
     +{
         v => 1,
         summary => 'Trim whitespace at the beginning of string',
+        examples => [
+            {value=>'foo'},
+            {value=>' foo ', filtered_value=>'foo '},
+        ],
     };
 }
 
