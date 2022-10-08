@@ -38,3 +38,9 @@ sub filter {
 # ABSTRACT:
 
 =for Pod::Coverage ^(meta|filter)$
+
+L<Data::Sah::Filter::perl::Str::trim>
+
+L<Data::Sah::Filter::perl::Str::rtrim>
+
+L<Data::Sah::Filter::perl::Str::remove_whitespace>

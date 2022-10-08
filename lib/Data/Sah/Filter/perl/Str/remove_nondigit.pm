@@ -45,3 +45,5 @@ sub filter {
 =for Pod::Coverage ^(meta|filter)$
 
 =head1 SEE ALSO
+
+Other C<Data::Sah::Filter::perl::Str::remove_*> modules.

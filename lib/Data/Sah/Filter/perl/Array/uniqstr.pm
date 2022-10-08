@@ -1,4 +1,4 @@
-package Data::Sah::Filter::perl::Array::uniqnum;
+package Data::Sah::Filter::perl::Array::uniqstr;
 
 use 5.010001;
 use strict;
@@ -12,14 +12,14 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Make an array uniq using List::Util\'s uniqnum()',
+        summary => 'Make an array uniq using List::Util\'s uniq() (synonym for uniq)',
         target_type => 'array',
         args => {
         },
         examples => [
             {value=>[]},
-            {value=>[1, 2]},
-            {value=>[1, 2, 1, 1, 3], filtered_value=>[1, 2, 3]},
+            {value=>["a","b"]},
+            {value=>["a","b","a","a","c","b"], filtered_value=>["a","b","c"]},
         ],
     };
 }
@@ -32,7 +32,7 @@ sub filter {
     $res->{modules}{'List::Util'} = 1.54;
     $res->{expr_filter} = join(
         "",
-        "[List::Util::uniqnum(\@{ $dt })]",
+        "[List::Util::uniq(\@{ $dt })]",
     );
 
     $res;
@@ -45,4 +45,4 @@ sub filter {
 
 =head1 SEE ALSO
 
-L<Data::Sah::Filter::perl::Array::uniqstr>
+L<Data::Sah::Filter::perl::Array::uniqnum>

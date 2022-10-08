@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Convert string to uppercase',
+        summary => 'Convert string to uppercase (synonym for uc)',
         examples => [
             {value=>'foo', filtered_value=>'FOO'},
             {value=>'Foo', filtered_value=>'FOO'},
