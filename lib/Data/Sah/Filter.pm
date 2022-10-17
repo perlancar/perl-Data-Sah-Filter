@@ -60,18 +60,15 @@ sub gen_filter {
         my $has_defined_tmp;
         for my $rule (@$rules) {
             if ($rule->{meta}{might_fail}) {
+                $code_filter .= "    my \$tmp;\n" unless $has_defined_tmp++;
+                $code_filter .= "    \$tmp = $rule->{expr_filter};\n";
                 if ($rt eq 'val') {
-                    $code_filter .= "    my \$tmp; " unless $has_defined_tmp++;
-                    $code_filter .= "    \$tmp = $rule->{expr_filter}; return undef if \$tmp->[0]; ";
+                    $code_filter .= "    return undef if \$tmp->[0];\n";
                 } else {
-                    $code_filter .= "    \$data = $rule->{expr_filter}; return \$data if \$data->[0]; ";
+                    $code_filter .= "    return \$tmp if \$tmp->[0];\n";
                 }
             } else {
-                if ($rt eq 'val') {
-                    $code_filter .= "    \$data = $rule->{expr_filter}; ";
-                } else {
-                    $code_filter .= "    \$data = [undef, $rule->{expr_filter}]; ";
-                }
+                $code_filter .= "    \$data = $rule->{expr_filter};\n";
             }
         }
 
@@ -81,12 +78,10 @@ sub gen_filter {
             "sub {\n",
             "    my \$data = shift;\n",
             "    unless (defined \$data) {\n",
-            "        ", ($rt eq 'val' ? "return undef;" :
-                             "return [undef, undef];" # str_errmsg+val
-                         ), "\n",
+            "        return ", ($rt eq 'val' ? "undef" : "[undef, undef]"), "\n",
             "    }\n",
             $code_filter, "\n",
-            "    \$data;\n",
+            "    ", ($rt eq 'val' ? "\$data" : "[undef, \$data]"), ";\n",
             "}",
         );
     } else {
