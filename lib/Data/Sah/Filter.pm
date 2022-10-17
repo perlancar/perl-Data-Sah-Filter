@@ -106,6 +106,8 @@ sub gen_filter {
 1;
 # ABSTRACT: Filtering for Data::Sah
 
+=for Pod::Coverage ^(.+)$
+
 =head1 SYNOPSIS
 
  use Data::Sah::Filter qw(gen_filter);
