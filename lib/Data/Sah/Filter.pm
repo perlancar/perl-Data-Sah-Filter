@@ -67,6 +67,7 @@ sub gen_filter {
                 } else {
                     $code_filter .= "    return \$tmp if \$tmp->[0];\n";
                 }
+                $code_filter .= "    \$data = \$tmp->[1];\n";
             } else {
                 $code_filter .= "    \$data = $rule->{expr_filter};\n";
             }
