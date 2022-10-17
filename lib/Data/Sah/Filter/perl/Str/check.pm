@@ -80,10 +80,10 @@ sub filter {
     my $res = {};
     $res->{expr_filter} = join(
         "",
-        "do {",
-        "    my \$tmp = $dt; ",
-        @check_exprs,
-        "    else { [undef, \$tmp] } ",
+        "do {\n",
+        "  my \$tmp = $dt;\n",
+        (map { "  $_\n" } @check_exprs),
+        "  else { [undef, \$tmp] }\n",
         "}",
     );
 
