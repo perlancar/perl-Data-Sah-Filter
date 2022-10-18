@@ -23,9 +23,9 @@ sub meta {
             },
         },
         examples => [
-            {value=>"12", filter_args=>{width=>4}, validated_value=>" 12 "},
-            {value=>"12", filter_args=>{width=>3}, validated_value=>"12 "},
-            {value=>"12", filter_args=>{width=>2}, validated_value=>"12"},
+            {value=>"12", filter_args=>{width=>4}, filtered_value=>" 12 "},
+            {value=>"12", filter_args=>{width=>3}, filtered_value=>"12 "},
+            {value=>"12", filter_args=>{width=>2}, filtered_value=>"12"},
             {value=>"12", filter_args=>{width=>1}, valid=>0},
         ],
         description => <<'_',

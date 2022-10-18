@@ -40,3 +40,5 @@ sub filter {
 =for Pod::Coverage ^(meta|filter)$
 
 =head1 DESCRIPTION
+
+L<Data::Sah::Filter::perl::Str::wrap>

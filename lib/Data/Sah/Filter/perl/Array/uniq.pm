@@ -46,3 +46,5 @@ sub filter {
 =head1 SEE ALSO
 
 Related filters: L<Float::check_has_fraction|Data::Sah::Filter::perl::Float::check_has_fraction>.
+
+L<Data::Sah::Filter::perl::Array::uniqnum>
