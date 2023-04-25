@@ -45,4 +45,6 @@ sub filter {
 
 =head1 SEE ALSO
 
-L<Data::Sah::Filter::perl::Array::uniqnum>
+L<Data::Sah::Filter::perl::Array::uniqnum>, L<Data::Sah::Filter::perl::Array::uniq>
+
+L<Data::Sah::Filter::perl::Array::check_uniqstr>
