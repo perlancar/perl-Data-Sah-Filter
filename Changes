@@ -1,3 +1,15 @@
+0.018   2023-04-25  Released-By: PERLANCAR; Urgency: medium
+
+        - Add perl filters: Str::ensure_trailing_newline,
+          check_{lowercase,uppercase,oneline}.
+
+        - [doc] [perl filters ltrim,trim,rtrim] Show that tabs and newlines
+          are also trimmed.
+
+        - [pod] In main modules' POD, list all the filter modules included in
+          the distribution.
+
+
 0.017   2023-04-25  Released-By: PERLANCAR; Urgency: low
 
         - No functional changes.
