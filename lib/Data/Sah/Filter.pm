@@ -136,6 +136,8 @@ Basically, a filter rule will provide an expression (C<expr_filter>) to convert
 data to another. Multiple filter rules will be combined to form the final
 filtering code.
 
+=head2 meta()
+
 The filter rule module must contain C<meta> subroutine which must return a
 hashref (L<DefHash>) that has the following keys (C<*> marks that the key is
 required):
@@ -150,23 +152,6 @@ Metadata specification version. From L<DefHash>. Currently at 1.
 
 From L<DefHash>.
 
-=back
-
-The filter rule module must also contain C<filter> subroutine which must
-generate the code for filtering. The subroutine must accept a hash of arguments
-(C<*> indicates required arguments):
-
-=over
-
-=item * data_term => str
-
-=back
-
-The C<filter> subroutine must return a hashref with the following keys (C<*>
-indicates required keys):
-
-=over
-
 =item * might_fail => bool
 
 Whether coercion might fail, e.g. because of invalid input. If set to 1,
@@ -178,13 +163,45 @@ should be set to undefined value.
 
 This is used for filtering rules that act as a data checker.
 
-=item * expr_filter => str
+=item * args => hash
+
+List of arguments that this filter accepts, in the form of hash where hash keys
+are argument names and hash values are argument specifications. Argument
+specification is a L<DefHash> similar to argument specification for functions in
+L<Rinci::function> specification.
+
+=back
+
+=head2 filter()
+
+The filter rule module must also contain C<filter> subroutine which must
+generate the code for filtering. The subroutine must accept a hash of arguments
+and will be passed these:
+
+=over
+
+=item * data_term => str
+
+=item * args => hash
+
+The arguments for the filter. Hash keys will contain the argument names, while
+hash values will contain the argument's values.
+
+=back
+
+The C<filter> subroutine must return a hashref with the following keys (C<*>
+indicates required keys):
+
+=over
+
+=item * expr_filter* => str
 
 Expression in the target language to actually convert data.
 
 =item * modules => hash
 
-A list of modules required by the expression.
+A list of modules required by the expression, where hash keys are module names
+and hash values are modules' minimum versions.
 
 =back
 
