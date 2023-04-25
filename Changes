@@ -1,3 +1,11 @@
+0.019   2023-04-25  Released-By: PERLANCAR; Urgency: low
+
+        - No functional changes.
+
+        - [doc] Document 'args' meta property as well as 'args' argument
+          passed to filter().
+
+
 0.018   2023-04-25  Released-By: PERLANCAR; Urgency: medium
 
         - Add perl filters: Str::ensure_trailing_newline,
