@@ -13,9 +13,15 @@ sub meta {
     +{
         v => 1,
         summary => 'Trim whitespaces at the beginning and end of string',
+        description => <<'_',
+
+Tabs and newlines will also be trimmed.
+
+_
         examples => [
             {value=>'foo'},
             {value=>' foo ', filtered_value=>'foo'},
+            {value=>"  \tfoo  \n", filtered_value=>'foo', summary=>"Tabs and newlines will also be trimmed"},
         ],
     };
 }

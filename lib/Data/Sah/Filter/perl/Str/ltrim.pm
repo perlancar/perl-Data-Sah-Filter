@@ -13,9 +13,15 @@ sub meta {
     +{
         v => 1,
         summary => 'Trim whitespaces at the beginning of string',
+        description => <<'_',
+
+Leading tabs and newlines will also be trimmed.
+
+_
         examples => [
             {value=>'foo'},
             {value=>' foo ', filtered_value=>'foo '},
+            {value=>"  \t  \nfoo ", filtered_value=>'foo ', summary=>"Leading tabs and newlines will also be trimmed"},
         ],
     };
 }
