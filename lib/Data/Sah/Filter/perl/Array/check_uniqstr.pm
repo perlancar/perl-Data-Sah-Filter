@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Check that an array has unique elements, using List::Util\'s uniqstr()',
+        summary => 'Check that an array has unique elements, using List::Util\'s uniqstr() (synonym for uniq())',
         target_type => 'array',
         might_fail => 1,
         args => {

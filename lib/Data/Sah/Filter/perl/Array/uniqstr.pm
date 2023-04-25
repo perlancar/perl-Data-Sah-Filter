@@ -12,7 +12,7 @@ use warnings;
 sub meta {
     +{
         v => 1,
-        summary => 'Make an array uniq using List::Util\'s uniq() (synonym for uniq)',
+        summary => 'Make an array uniq using List::Util\'s uniqstr() (synonym for uniq)',
         target_type => 'array',
         args => {
         },
@@ -32,7 +32,7 @@ sub filter {
     $res->{modules}{'List::Util'} = 1.54;
     $res->{expr_filter} = join(
         "",
-        "[List::Util::uniq(\@{ $dt })]",
+        "[List::Util::uniqstr(\@{ $dt })]",
     );
 
     $res;
