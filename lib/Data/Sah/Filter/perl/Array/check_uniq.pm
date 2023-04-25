@@ -58,6 +58,13 @@ sub filter {
 
 =for Pod::Coverage ^(meta|filter)$
 
+=head1 FAQ
+
+=head2 How to check that array contains a duplicate?
+
+Use the C<reverse> argument and set it to 1.
+
+
 =head1 SEE ALSO
 
 L<Data::Sah::Filter::perl::Array::uniqnum>.
