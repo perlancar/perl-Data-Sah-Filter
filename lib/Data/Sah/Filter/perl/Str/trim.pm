@@ -45,6 +45,8 @@ sub filter {
 
 =for Pod::Coverage ^(meta|filter)$
 
+=head1 SEE ALSO
+
 L<Data::Sah::Filter::perl::Str::ltrim>
 
 L<Data::Sah::Filter::perl::Str::rtrim>

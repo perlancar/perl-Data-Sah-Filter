@@ -13,11 +13,17 @@ sub meta {
     +{
         v => 1,
         summary => 'Remove whitespaces from string',
+        description => <<'_',
+
+Tabs and newlines will also be removed.
+
+_
         args => {
         },
         examples => [
             {value=>"foo"},
             {value=>"foo  bar ", filtered_value=>"foobar"},
+            {value=>"  foo \t bar \n ", filtered_value=>"foobar", summary=>"Tabs and newlines will also be removed"},
         ],
     };
 }
