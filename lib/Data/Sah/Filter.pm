@@ -204,6 +204,10 @@ code):
    return $data;
  }
 
+=head2 Filter modules included in this distribution
+
+# INSERT_MODULES_LIST /^Data::Sah::Filter::/
+
 
 =head1 VARIABLES
 
