@@ -48,12 +48,13 @@ sub filter {
     my $gen_args = $fargs{args} // {};
     my $res = {};
 
-    $res->{modules}{'List::Util'} = 1.54;
+    $res->{modules}{'List::Util::Uniq'} = "0.005";
+    $res->{modules}{'Data::Dmp'} = "0.242";
     $res->{expr_filter} = join(
         "",
         # TODO: [ux] report the duplicate element(s) in error message
-        "do { my \$orig = $dt; \$tmp=".($gen_args->{ci} ? "[map {lc} \@\$orig]":"$dt")."; my \@uniq = List::Util::uniq(\@\$tmp); ",
-        ($gen_args->{reverse} ? "@\$tmp != \@uniq ? [undef,\$orig] : [\"Array does not have duplicate string(s)\"]" : "@\$tmp == \@uniq ? [undef,\$orig] : [\"Array has duplicate string(s)\"]"),
+        "do { my \$orig = $dt; \$tmp=".($gen_args->{ci} ? "[map {lc} \@\$orig]":"$dt")."; my \@dupes = List::Util::Uniq::uniqstr( List::Util::Uniq::dupestr(\@\$tmp) ); ",
+        ($gen_args->{reverse} ? "\@dupes ? [undef,\$tmp] : [\"Array does not have duplicate string(s)\"]" : "!\@dupes ? [undef,\$tmp] : [\"Array has duplicate string(s): \".join(', ', map { Data::Dmp::dmp(\$_) } \@dupes)]"),
          "}",
     );
 

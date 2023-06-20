@@ -41,12 +41,12 @@ sub filter {
     my $dt = $fargs{data_term};
     my $gen_args = $fargs{args} // {};
     my $res = {};
-    $res->{modules}{'List::Util'} = 1.54;
+    $res->{modules}{'List::Util::Uniq'} = "0.005";
+    $res->{modules}{'Data::Dmp'} = "0.242";
     $res->{expr_filter} = join(
         "",
-        # TODO: [ux] report the duplicate element(s) in error message
-        "do { my \$tmp=$dt; my \@uniq = List::Util::uniq(\@\$tmp); ",
-        ($gen_args->{reverse} ? "@\$tmp != \@uniq ? [undef,\$tmp] : [\"Array does not have duplicate element(s)\"]" : "@\$tmp == \@uniq ? [undef,\$tmp] : [\"Array has duplicate element(s)\"]"),
+        "do { my \$tmp=$dt; my \@dupes = List::Util::Uniq::uniq( List::Util::Uniq::dupe(\@\$tmp) ); ",
+        ($gen_args->{reverse} ? "\@dupes ? [undef,\$tmp] : [\"Array does not have duplicate element(s)\"]" : "!\@dupes ? [undef,\$tmp] : [\"Array has duplicate element(s): \".join(', ', map { Data::Dmp::dmp(\$_) } \@dupes)]"),
         "}",
     );
 
