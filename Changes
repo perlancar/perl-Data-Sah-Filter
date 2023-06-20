@@ -1,3 +1,11 @@
+0.021   2023-06-20  Released-By: PERLANCAR; Urgency: low
+
+        - No functional changes.
+
+        - [ux] [filters Array::check_uniq, Array::check_uniqnum,
+          Array::check_uniqstr] Show duplicate elements in error message.
+
+
 0.020   2023-04-25  Released-By: PERLANCAR; Urgency: low
 
         - No functional changes.
