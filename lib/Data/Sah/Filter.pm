@@ -125,7 +125,7 @@ sub gen_filter {
 =head1 DESCRIPTION
 
 This distribution contains a standard set of filter rules for L<Data::Sah> (to
-be used in C<prefilters> and C<postfilter> cause). It is separated from the
+be used in C<prefilters> and C<postfilters> cause). It is separated from the
 C<Data-Sah> distribution and can be used independently.
 
 A filter rule is put in C<Data::Sah::Filter::$COMPILER::$CATEGORY:$DESCRIPTION>
