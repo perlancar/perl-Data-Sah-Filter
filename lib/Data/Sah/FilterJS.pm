@@ -124,7 +124,7 @@ sub gen_filter {
 =head1 DESCRIPTION
 
 This module is just like L<Data::Sah::Filter> except that it uses JavaScript
-filter rule modules.
+filter rule modules and generates JavaScript code.
 
 
 =head1 VARIABLES
