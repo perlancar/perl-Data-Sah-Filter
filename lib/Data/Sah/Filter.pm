@@ -132,9 +132,12 @@ A filter rule is put in C<Data::Sah::Filter::$COMPILER::$CATEGORY:$DESCRIPTION>
 module, for example: L<Data::Sah::Filter::perl::Str::trim> for trimming
 whitespace at the beginning and end of string.
 
-Basically, a filter rule will provide an expression (C<expr_filter>) to convert
-data to another. Multiple filter rules will be combined to form the final
-filtering code.
+Basically, a filter rule will provide a Perl expression (C<expr_filter>) to
+convert one data to another. Multiple filter rules can be combined to form the
+final filtering code. This code can be used by C<Data::Sah> when generating
+validator code from L<Sah> schema, or can be used directly. Some projects which
+use filtering rules directly include: L<App::orgadb> (which lets users specify
+filters from the command-line).
 
 =head2 meta()
 
