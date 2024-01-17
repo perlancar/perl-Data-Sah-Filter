@@ -121,6 +121,13 @@ sub gen_filter {
  my $val = $c->("foo");        # unchanged, "foo"
  my $val = $c->(" foo ");      # "foo"
 
+Another example:
+
+ my $c = gen_filter(
+     filter_names       => [ ['Str::remove_comment' => {style=>'shell'}] ],
+     #filter_names      => ['Str::remove_comment=style,shell'], # same as above
+ );
+
 
 =head1 DESCRIPTION
 

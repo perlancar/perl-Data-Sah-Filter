@@ -50,8 +50,19 @@ sub get_filter_rules {
 
     my @rules;
     for my $entry (@{ $args{filter_names} }) {
-        my $filter_name = ref $entry eq 'ARRAY' ? $entry->[0] : $entry;
-        my $filter_gen_args = ref $entry eq 'ARRAY' ? $entry->[1] : undef;
+        my ($filter_name, $filter_gen_args);
+        if (ref $entry eq 'ARRAY') {
+            $filter_name = $entry->[0];
+            $filter_gen_args = $entry->[1];
+        } else {
+            if ($entry =~ /(.*?)=(.*)/) {
+                $filter_name = $1;
+                $filter_gen_args = {split /,/, $2};
+            } else {
+                $filter_name = $entry;
+                $filter_gen_args = undef;
+            }
+        }
 
         my $mod = $prefix . $filter_name;
         (my $mod_pm = "$mod.pm") =~ s!::!/!g;
